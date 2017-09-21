@@ -1,0 +1,14 @@
+name: dddart
+description: Some simple DDD dart tools I use.
+version: 0.0.1
+homepage: https://github.com/seanmccleary/dddart
+author: Sean McCleary <sean.mccleary@gmail.com>
+
+environment:
+  sdk: '>=1.20.1 <2.0.0'
+
+dependencies:
+  uuid: ^0.5.0
+  logging: ^0.11.3+1
+dev_dependencies:
+  test: ^0.12.0
