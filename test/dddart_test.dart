@@ -5,7 +5,6 @@ import 'package:logging/logging.dart' as log;
 
 /// A simple test class
 class Person extends AggregateRoot {
-
   /// The name of a person
   String name;
 
@@ -13,25 +12,23 @@ class Person extends AggregateRoot {
   int age;
 
   /// Instantiates a person
-  Person(this.name, this.age, {String id = null, DateTime created = null,
-    DateTime updated = null})
+  Person(this.name, this.age,
+      {String? id, DateTime? created, DateTime? updated})
       : super(id: id, created: created, updated: updated);
 }
 
 Future<dynamic> main() async {
-
   log.Logger.root.level = log.Level.ALL;
   log.Logger.root.onRecord.listen((log.LogRecord rec) {
     print('${rec.level.name}: ${rec.time}: ${rec.message}');
   });
 
   test('Aggregate Root Repo', () async {
-
     final AggregateRootRepository<Person> personRepo =
-        new InMemoryAggregateRootRepository<Person>();
+        InMemoryAggregateRootRepository<Person>();
 
-    final Person p1 = new Person("Bob", 10);
-    final Person p2 = new Person("Jimmy", 20, id: "123ABC");
+    final Person p1 = Person("Bob", 10);
+    final Person p2 = Person("Jimmy", 20, id: "123ABC");
 
     expect(p1.name, "Bob");
     expect(p1.age, 10);

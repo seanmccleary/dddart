@@ -3,7 +3,6 @@ import '../aggregate_root.dart';
 
 /// Interface for a data store repository for Entities
 abstract class AggregateRootRepository<T extends AggregateRoot> {
-
   /// Gets an Entity by its ID
   Future<T> getById(String id);
 

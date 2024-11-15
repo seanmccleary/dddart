@@ -6,15 +6,19 @@ import '../aggregate_root_repository.dart';
 /// An in-memory implementation of the Entity repository
 class InMemoryAggregateRootRepository<T extends AggregateRoot>
     implements AggregateRootRepository<T> {
+  static final log.Logger _logger =
+      log.Logger('InMemoryAggregateRootRepository');
 
-  static final log.Logger _logger = new log.Logger('InMemoryAggregateRootRepository');
-
-  final Map<String, T> _cache = new Map<String, T>();
+  final Map<String, T> _cache = {};
 
   @override
   Future<T> getById(String id) async {
     _logger.finer("Getting object with ID $id");
-    return _cache[id];
+    final result = _cache[id];
+    if (result == null) {
+      throw Exception("Object with ID $id not found");
+    }
+    return result;
   }
 
   @override
